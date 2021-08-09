@@ -179,23 +179,12 @@ function sumInRange(a, b) {
 // this would be "34".
 
 function numToString(num) {
-  for (let i = 1; i <= num; i++) {
-    if (num % i == 0) {
-      switch (i) {
-        case 3:
-          console.log("Diego");
-          break;
-        case 5:
-          console.log("Riccardo");
-          break;
-        case 7:
-          console.log("Stefano");
-          break;
-        default:
-          console.log(num);
-      }
-    }
-  }
+  let str = "";
+  if (num % 3 === 0) str += "Diego";
+  if (num % 5 === 0) str += "Riccardo";
+  if (num % 7 === 0) str += "Stefano";
+
+  console.log(str);
 }
 numToString(28);
 /*

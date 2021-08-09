@@ -11,7 +11,6 @@ function maxChar(str) {
   const obj = {};
   str.split("").forEach((char) => (obj[char] = obj[char] + 1 || 1));
   return Object.keys(obj).reduce((a, b) => (obj[a] >= obj[b] ? a : b));
-  //   return Object.keys(obj).reduce((a, b) => (obj[a] >= obj[b] ? a : b));
 }
 /* 2) ANAGRAMS
 
@@ -25,8 +24,35 @@ or punctuation.  Consider capital letters to be the same as lower case
   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
   anagrams('Hi there', 'Bye there') --> False
 */
-function checkIfAnagram(str1, str2) {}
+function checkIfAnagram(str1, str2) {
+  //   const obj1 = {};
+  //   const obj2 = {};
+  //   str1
+  //     .split(" ")
+  //     .join("")
+  //     .split("")
+  //     .forEach((char) => (obj1[char] = obj1[char] + 1 || 1));
 
+  //   str2
+  //     .split(" ")
+  //     .join("")
+  //     .split("")
+  //     .forEach((char) => (obj2[char] = obj2[char] + 1 || 1));
+
+  //   console.log(
+  //     Object.keys(obj1).toString() == Object.keys(obj2).toString() &&
+  //       Object.values(obj1) == Object.values(obj2)
+  //   );
+  console.log(
+    str1.toLowerCase().split("").sort().join("") ===
+      str2.toLowerCase().split("").sort().join("")
+  );
+  console.log(
+    str1.toLowerCase().split("").sort().join(""),
+    str2.toLowerCase().split("").sort().join("")
+  );
+}
+checkIfAnagram("listen", "silent");
 /* 3) ANAGRAMS 2
 
 Given a word and a list of possible anagrams, select the correct sublist.
@@ -48,7 +74,10 @@ and punctuation in determining if the string is a palindrome.
     palindrome("abba") === true
     palindrome("abcdefg") === false
  */
-
+function palindrome(str) {
+  let reverseStr = str.toLowerCase().split("").reverse().join("");
+  return str === reverseStr ? true : false;
+}
 /* 5) REVERSE INT
 
 Given an integer, return an integer that is the reverse
@@ -62,7 +91,11 @@ ordering of numbers.
     reverseInt(-15) === -51
     reverseInt(-90) === -9
  */
-
+function reverseInt(num) {
+  let reverseInt = num.toString().split("").reverse().join("");
+  return num < 0 ? -+parseInt(reverseInt) : +reverseInt;
+}
+console.log(reverseInt(-90));
 /* 6) STEPS
 
 Write a function that accepts a positive number N.
@@ -96,6 +129,9 @@ order of characters
     reverse('hello') === 'olleh'
     reverse('Greetings!') === '!sgniteerG'
  */
+function reverseStr(str) {
+  return str.toLowerCase().split("").reverse().join("");
+}
 
 /* 8) CHUNK
 
@@ -110,6 +146,15 @@ where each subarray is of length size
     chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
     chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 */
+
+function subarrays(arr, size) {
+  const chunks = [];
+  for (let i = 0; i < arr.length; i += size) {
+    const chunk = arr.slice(i, i + size);
+    chunks.push(chunk);
+  }
+  return chunks;
+}
 
 /* 9) PYRAMID
 
@@ -130,6 +175,15 @@ pyramid has spaces on both the left and right hand sides
         ' ### '
         '#####' */
 
+function pyramid(height) {
+  for (let i = 0; i < height; i++) {
+    // 2n+1
+    let stars = "*".repeat(2 * i + 1);
+    let spacesBefore = " ".repeat(height - i - 1);
+    console.log(spacesBefore + stars);
+  }
+}
+pyramid(4);
 /* 10) SPYRAL MATRIX
 
 Write a function that accepts an integer N
@@ -151,3 +205,13 @@ and returns a NxN spiral matrix.
         [10,  9,  8, 7]]
 
 */
+function arrMatrix(size) {
+  let matrix = [];
+  for (let row = 0; row < size; row++) {
+    matrix[row] = [];
+    for (let col = 0; col < size; col++) {
+      matrix[row] = matrix[col];
+    }
+  }
+}
+console.log(arrMatrix(2));
